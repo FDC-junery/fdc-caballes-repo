@@ -37,11 +37,18 @@ public class Test_SeleniumTest {
 
         try
         {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         }catch (InterruptedException e){}
 
-        webD.get("https://english.fdc-inc.com/logout");
 
+        if(webD.findElement(By.xpath("//button[@type='submit']")).isDisplayed())
+        {
+            webD.quit();
+            Assert.fail("Failed to Login after 10 seconds");
+        }
+
+        webD.get("https://english.fdc-inc.com/logout");
+        webD.quit();
 
     }
 
